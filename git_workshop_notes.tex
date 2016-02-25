@@ -129,8 +129,10 @@ Git is about version control. Changes made to files are called commits.
 \KeywordTok{Untracked} \NormalTok{files:}
   \KeywordTok{(use} \StringTok{"git add <file>..."} \NormalTok{to include in what will be committed}\KeywordTok{)}
 
-        \KeywordTok{.git_workshop_notes.swp}
-        \KeywordTok{git_workshop_notes}
+        \KeywordTok{.git_workshop_notes.md.swp}
+        \KeywordTok{git_workshop_notes.md}
+        \KeywordTok{git_workshop_notes.pdf}
+        \KeywordTok{git_workshop_notes.tex}
         \KeywordTok{git_workshop_notestex}
         \KeywordTok{git_workshop_notestex.aux}
         \KeywordTok{git_workshop_notestex.log}
@@ -141,6 +143,117 @@ Git is about version control. Changes made to files are called commits.
 
 \end{Highlighting}
 \end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  By default, first commit goes to Master.
+\item
+  Here I have created files, and they are UNTRACKED!!
+\item
+  As soon as you make git aware of them, git will begin tracking their
+  changes.
+\item
+  git add stages the changes.
+\item
+  Some people add each file separately, then commit in bulk.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$ }\KeywordTok{git} \NormalTok{add *}
+\NormalTok{$ }\KeywordTok{git} \NormalTok{status}
+\KeywordTok{On} \NormalTok{branch master}
+
+\KeywordTok{Initial} \NormalTok{commit}
+
+\KeywordTok{Changes} \NormalTok{to be committed:}
+  \KeywordTok{(use} \StringTok{"git rm --cached <file>..."} \NormalTok{to unstage}\KeywordTok{)}
+
+        \KeywordTok{new} \NormalTok{file:   git_workshop_notes.md}
+        \KeywordTok{new} \NormalTok{file:   git_workshop_notes.pdf}
+        \KeywordTok{new} \NormalTok{file:   git_workshop_notes.tex}
+        \KeywordTok{new} \NormalTok{file:   git_workshop_notestex}
+        \KeywordTok{new} \NormalTok{file:   git_workshop_notestex.aux}
+        \KeywordTok{new} \NormalTok{file:   git_workshop_notestex.log}
+        \KeywordTok{new} \NormalTok{file:   git_workshop_notestex.out}
+        \KeywordTok{new} \NormalTok{file:   git_workshop_notestex.pdf}
+
+\KeywordTok{Untracked} \NormalTok{files:}
+  \KeywordTok{(use} \StringTok{"git add <file>..."} \NormalTok{to include in what will be committed}\KeywordTok{)}
+
+        \KeywordTok{.git_workshop_notes.md.swp}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  Now it's tracking them, but they have not been committed yet.
+\item
+  git commit
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$ }\KeywordTok{git} \NormalTok{commit}
+\NormalTok{[}\KeywordTok{opens} \NormalTok{vi editor and wants message with the stuff]}
+\NormalTok{[}\KeywordTok{master} \NormalTok{(root-commit) }\KeywordTok{0e0d499}\NormalTok{] Start notes on this tutorial folder}
+ \KeywordTok{8} \NormalTok{files changed, 1280 insertions(+)}
+ \KeywordTok{create} \NormalTok{mode 100644 git_workshop_notes.md}
+ \KeywordTok{create} \NormalTok{mode 100644 git_workshop_notes.pdf}
+ \KeywordTok{create} \NormalTok{mode 100644 git_workshop_notes.tex}
+ \KeywordTok{create} \NormalTok{mode 100644 git_workshop_notestex}
+ \KeywordTok{create} \NormalTok{mode 100644 git_workshop_notestex.aux}
+ \KeywordTok{create} \NormalTok{mode 100644 git_workshop_notestex.log}
+ \KeywordTok{create} \NormalTok{mode 100644 git_workshop_notestex.out}
+ \KeywordTok{create} \NormalTok{mode 100644 git_workshop_notestex.pdf}
+\end{Highlighting}
+\end{Shaded}
+\item
+  vi editor is default, but I prefer vim:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$  }\KeywordTok{git} \NormalTok{config --global user.editor }\StringTok{"vim"}
+\end{Highlighting}
+\end{Shaded}
+\item
+  git log tells use the history of changes that we have made. ```bash \$
+  git log commit 0e0d499b750312cf8fe371799803dfdb5637d321 Author:
+  alexprp
+  \href{mailto:alexprphillips@gmail.com}{\nolinkurl{alexprphillips@gmail.com}}
+  Date: Thu Feb 25 13:32:33 2016 -0600
+
+  Start notes on this tutorial folder
+\end{itemize}
+
+\$ git log --oneline 0e0d499 Start notes on this tutorial folder ```
+
+\begin{itemize}
+\item
+  This is why it's super important to leave good commit messages.
+  Otherwise, the message in the log is meaningless.
+\item
+  I have made more changes to this notes file and its derivatives since
+  we last committed. Let's see what that does ```bash \$ git status On
+  branch master Changes not staged for commit: (use ``git add \ldots{}''
+  to update what will be committed) (use ``git checkout -- \ldots{}'' to
+  discard changes in working directory)
+
+  modified: git\_workshop\_notes.md modified: git\_workshop\_notes.pdf
+  modified: git\_workshop\_notes.tex
+\end{itemize}
+
+Untracked files: (use ``git add \ldots{}'' to include in what will be
+committed)
+
+\begin{verbatim}
+.git_workshop_notes.md.swp
+\end{verbatim}
+
+no changes added to commit (use ``git add'' and/or ``git commit -a'')
+``` - git diff tells us the changes specifically that have been made. -
+I don't put that here because it's the same text and
+pandoc/latex/markdown get confused.
 
 \hypertarget{refs}{}
 

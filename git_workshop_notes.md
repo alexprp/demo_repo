@@ -135,3 +135,109 @@ no changes added to commit (use "git add" and/or "git commit -a")
 - git diff tells us the changes specifically that have been made. 
 - I don't put that here because it's the same text and pandoc/latex/markdown get
   confused. 
+```bash
+$ rm *notestex*
+$ git add *
+$ git commit -m 'deleted accidental files and added more notes'
+[master 904dcea] deleted accidental files and added more notes
+ 3 files changed, 203 insertions(+), 3 deletions(-)
+ rewrite git_workshop_notes.pdf (62%)
+$ git log 
+
+commit 904dceaff5ee685c3a52d11e673068e9c22baed0
+Author: alexprp <alexprphillips@gmail.com>
+Date:   Thu Feb 25 13:58:12 2016 -0600
+
+    deleted accidental files and added more notes
+
+commit 0e0d499b750312cf8fe371799803dfdb5637d321
+Author: alexprp <alexprphillips@gmail.com>
+Date:   Thu Feb 25 13:32:33 2016 -0600
+
+    Start notes on this tutorial folder
+$ git log --oneline
+
+904dcea deleted accidental files and added more notes
+0e0d499 Start notes on this tutorial folder
+```
+- 'git --staged' only shows staged chages
+
+Branches
+--------
+
+- Master always points to latest commit; it's a pointer
+- HEAD is a special pointer that points to Master, not directly to the latest
+  commit. HEAD points to the **parent of the nest commit**. 
+- If chages are made off of another instance of the previous commit, a new
+  master is created. If there is a dangling Master, it will be deleted
+periodically, automatically by git if it has not been committed. 
+
+Folders
+-------------
+
+```bash
+$ mkdir folder1
+
+$ git add folder1
+
+[nothing happens]
+
+```
+- git does not track empty folders
+
+```bash
+$ echo 'qwer' > folder1/asdf.txt
+$ git add folder1
+
+```
+- nested git repositories are dangerous. don't do it. 
+- To make git forget about a directory, simply:
+```bash
+$ rm -rf .git
+```
+.git
+----
+
+```bash
+$ ls .git
+
+branches
+COMMIT_EDITMSG
+config
+description
+HEAD
+hooks
+index
+info
+logs
+objects
+refs
+```
+- contains many files, including a local instance of ~/.config
+
+```bash
+$ cat COMMIT_EDITMSG
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#	modified:   git_workshop_notes.md
+#	modified:   git_workshop_notes.pdf
+#	modified:   git_workshop_notes.tex
+#
+# Changes not staged for commit:
+#	deleted:    git_workshop_notestex
+#	deleted:    git_workshop_notestex.aux
+#	deleted:    git_workshop_notestex.log
+#	deleted:    git_workshop_notestex.out
+#	deleted:    git_workshop_notestex.pdf
+#
+# Untracked files:
+#	.git_workshop_notes.md.swo
+#	.git_workshop_notes.md.swp
+#
+
+```
+- This is what will be shown upon commit; contains stuff from last stage. 

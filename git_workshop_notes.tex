@@ -251,9 +251,148 @@ committed)
 \end{verbatim}
 
 no changes added to commit (use ``git add'' and/or ``git commit -a'')
-``` - git diff tells us the changes specifically that have been made. -
-I don't put that here because it's the same text and
-pandoc/latex/markdown get confused.
+\texttt{-\ git\ diff\ tells\ us\ the\ changes\ specifically\ that\ have\ been\ made.\ \ -\ I\ don\textquotesingle{}t\ put\ that\ here\ because\ it\textquotesingle{}s\ the\ same\ text\ and\ pandoc/latex/markdown\ get\ \ \ confused.}bash
+\$ rm \emph{notestex} \$ git add * \$ git commit -m `deleted accidental
+files and added more notes' {[}master 904dcea{]} deleted accidental
+files and added more notes 3 files changed, 203 insertions(+), 3
+deletions(-) rewrite git\_workshop\_notes.pdf (62\%) \$ git log
+
+commit 904dceaff5ee685c3a52d11e673068e9c22baed0 Author: alexprp
+\href{mailto:alexprphillips@gmail.com}{\nolinkurl{alexprphillips@gmail.com}}
+Date: Thu Feb 25 13:58:12 2016 -0600
+
+\begin{verbatim}
+deleted accidental files and added more notes
+\end{verbatim}
+
+commit 0e0d499b750312cf8fe371799803dfdb5637d321 Author: alexprp
+\href{mailto:alexprphillips@gmail.com}{\nolinkurl{alexprphillips@gmail.com}}
+Date: Thu Feb 25 13:32:33 2016 -0600
+
+\begin{verbatim}
+Start notes on this tutorial folder
+\end{verbatim}
+
+\$ git log --oneline
+
+904dcea deleted accidental files and added more notes 0e0d499 Start
+notes on this tutorial folder ``` - `git --staged' only shows staged
+chages
+
+\subsection{Branches}\label{branches}
+
+\begin{itemize}
+\tightlist
+\item
+  Master always points to latest commit; it's a pointer
+\item
+  HEAD is a special pointer that points to Master, not directly to the
+  latest commit. HEAD points to the \textbf{parent of the nest commit}.
+\item
+  If chages are made off of another instance of the previous commit, a
+  new master is created. If there is a dangling Master, it will be
+  deleted periodically, automatically by git if it has not been
+  committed.
+\end{itemize}
+
+\subsection{Folders}\label{folders}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$ }\KeywordTok{mkdir} \NormalTok{folder1}
+
+\NormalTok{$ }\KeywordTok{git} \NormalTok{add folder1}
+
+\NormalTok{[}\KeywordTok{nothing} \NormalTok{happens]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  git does not track empty folders
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$ }\KeywordTok{echo} \StringTok{'qwer'} \KeywordTok{>} \NormalTok{folder1/asdf.txt}
+\NormalTok{$ }\KeywordTok{git} \NormalTok{add folder1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  nested git repositories are dangerous. don't do it.
+\item
+  To make git forget about a directory, simply:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$ }\KeywordTok{rm} \NormalTok{-rf .git}
+\end{Highlighting}
+\end{Shaded}
+
+  \subsection{.git}\label{git}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$ }\KeywordTok{ls} \NormalTok{.git}
+
+\KeywordTok{branches}
+\KeywordTok{COMMIT_EDITMSG}
+\KeywordTok{config}
+\KeywordTok{description}
+\KeywordTok{HEAD}
+\KeywordTok{hooks}
+\KeywordTok{index}
+\KeywordTok{info}
+\KeywordTok{logs}
+\KeywordTok{objects}
+\KeywordTok{refs}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  contains many files, including a local instance of
+  \textasciitilde{}/.config
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$ }\KeywordTok{cat} \NormalTok{COMMIT_EDITMSG}
+
+
+\CommentTok{# Please enter the commit message for your changes. Lines starting}
+\CommentTok{# with '#' will be ignored, and an empty message aborts the commit.}
+\CommentTok{# On branch master}
+\CommentTok{# Changes to be committed:}
+\CommentTok{#   modified:   git_workshop_notes.md}
+\CommentTok{#   modified:   git_workshop_notes.pdf}
+\CommentTok{#   modified:   git_workshop_notes.tex}
+\CommentTok{#}
+\CommentTok{# Changes not staged for commit:}
+\CommentTok{#   deleted:    git_workshop_notestex}
+\CommentTok{#   deleted:    git_workshop_notestex.aux}
+\CommentTok{#   deleted:    git_workshop_notestex.log}
+\CommentTok{#   deleted:    git_workshop_notestex.out}
+\CommentTok{#   deleted:    git_workshop_notestex.pdf}
+\CommentTok{#}
+\CommentTok{# Untracked files:}
+\CommentTok{#   .git_workshop_notes.md.swo}
+\CommentTok{#   .git_workshop_notes.md.swp}
+\CommentTok{#}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  This is what will be shown upon commit; contains stuff from last
+  stage.
+\end{itemize}
 
 \hypertarget{refs}{}
 

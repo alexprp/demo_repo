@@ -241,3 +241,88 @@ $ cat COMMIT_EDITMSG
 
 ```
 - This is what will be shown upon commit; contains stuff from last stage. 
+
+```bash
+$ cat .git/HEAD
+
+ref: refs/heads/master
+
+```
+
+- To commit quickly:
+```bash
+$ git commit -am 'quickly commit more notes without multiple commands or staging'
+
+[master 1064b17] quickly commit more notes without multiple commands or staging
+ 9 files changed, 249 insertions(+), 1086 deletions(-)
+ create mode 100644 folder1/asdf.txt
+ rewrite git_workshop_notes.pdf (64%)
+ delete mode 100644 git_workshop_notestex
+ delete mode 100644 git_workshop_notestex.aux
+ delete mode 100644 git_workshop_notestex.log
+ delete mode 100644 git_workshop_notestex.out
+ delete mode 100644 git_workshop_notestex.pdf
+```
+
+If you committed a mistake and want to amend
+```bash
+$ git commit --amend
+# opens vi editor and allows editing of commit message, uses same hash and everything
+$ git log --oneline
+
+daa3b30 quickly commit more notes without multiple commands or staging with slight changes
+904dcea deleted accidental files and added more notes
+0e0d499 Start notes on this tutorial folder
+```
+
+Demo
+----
+
+```bash
+$ mkdir git_workshop_2
+$ cd git_workshop_2
+$ vim file1.txt
+$ cat file1.txt
+
+asdfl;kjasdfl
+asdfl;kasdfl
+
+$ git init
+
+Initialized empty Git repository in /home/alex/git_workshop_2/.git/
+
+$ ls
+
+file1.txt
+
+$ git add file1.txt
+$ git commit -m 'new'
+
+[master (root-commit) 6aaa158] new
+ 1 file changed, 3 insertions(+)
+ create mode 100644 file1.txt
+
+$ vim file1.txt
+$ cat file1.txt
+
+sdfl;kjasdfl
+asdfl;kasdfl
+fjdkfjdkfdk
+
+and now for something completely different
+
+$ git diff
+
+diff --git a/file1.txt b/file1.txt
+index 9dea9ee..ab8d3ea 100644
+--- a/file1.txt
++++ b/file1.txt
+@@ -1,3 +1,5 @@
+ asdfl;kjasdfl
+ asdfl;kasdfl
+ fjdkfjdkfdk
++
++and now for something completely different
+
+
+```

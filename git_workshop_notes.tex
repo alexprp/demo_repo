@@ -394,6 +394,96 @@ chages
   stage.
 \end{itemize}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$ }\KeywordTok{cat} \NormalTok{.git/HEAD}
+
+\KeywordTok{ref}\NormalTok{: refs/heads/master}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  To commit quickly: ```bash \$ git commit -am `quickly commit more
+  notes without multiple commands or staging'
+\end{itemize}
+
+{[}master 1064b17{]} quickly commit more notes without multiple commands
+or staging 9 files changed, 249 insertions(+), 1086 deletions(-) create
+mode 100644 folder1/asdf.txt rewrite git\_workshop\_notes.pdf (64\%)
+delete mode 100644 git\_workshop\_notestex delete mode 100644
+git\_workshop\_notestex.aux delete mode 100644
+git\_workshop\_notestex.log delete mode 100644
+git\_workshop\_notestex.out delete mode 100644
+git\_workshop\_notestex.pdf ```
+
+If you committed a mistake and want to amend
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$ }\KeywordTok{git} \NormalTok{commit --amend}
+\CommentTok{# opens vi editor and allows editing of commit message, uses same hash and everything}
+\NormalTok{$ }\KeywordTok{git} \NormalTok{log --oneline}
+
+\KeywordTok{daa3b30} \NormalTok{quickly commit more notes without multiple commands or staging with slight changes}
+\KeywordTok{904dcea} \NormalTok{deleted accidental files and added more notes}
+\KeywordTok{0e0d499} \NormalTok{Start notes on this tutorial folder}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Demo}\label{demo}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$ }\KeywordTok{mkdir} \NormalTok{git_workshop_2}
+\NormalTok{$ }\KeywordTok{cd} \NormalTok{git_workshop_2}
+\NormalTok{$ }\KeywordTok{vim} \NormalTok{file1.txt}
+\NormalTok{$ }\KeywordTok{cat} \NormalTok{file1.txt}
+
+\KeywordTok{asdfl;kjasdfl}
+\KeywordTok{asdfl;kasdfl}
+
+\NormalTok{$ }\KeywordTok{git} \NormalTok{init}
+
+\KeywordTok{Initialized} \NormalTok{empty Git repository in /home/alex/git_workshop_2/.git/}
+
+\NormalTok{$ }\KeywordTok{ls}
+
+\KeywordTok{file1.txt}
+
+\NormalTok{$ }\KeywordTok{git} \NormalTok{add file1.txt}
+\NormalTok{$ }\KeywordTok{git} \NormalTok{commit -m }\StringTok{'new'}
+
+\NormalTok{[}\KeywordTok{master} \NormalTok{(root-commit) }\KeywordTok{6aaa158}\NormalTok{] new}
+ \KeywordTok{1} \NormalTok{file changed, 3 insertions(+)}
+ \KeywordTok{create} \NormalTok{mode 100644 file1.txt}
+
+\NormalTok{$ }\KeywordTok{vim} \NormalTok{file1.txt}
+\NormalTok{$ }\KeywordTok{cat} \NormalTok{file1.txt}
+
+\KeywordTok{sdfl;kjasdfl}
+\KeywordTok{asdfl;kasdfl}
+\KeywordTok{fjdkfjdkfdk}
+
+\KeywordTok{and} \NormalTok{now for something completely different}
+
+\NormalTok{$ }\KeywordTok{git} \NormalTok{diff}
+
+\KeywordTok{diff} \NormalTok{--git a/file1.txt b/file1.txt}
+\KeywordTok{index} \NormalTok{9dea9ee..ab8d3ea 100644}
+\KeywordTok{---} \NormalTok{a/file1.txt}
+\KeywordTok{+++} \NormalTok{b/file1.txt}
+\KeywordTok{@@} \NormalTok{-1,3 +1,5 @@}
+ \KeywordTok{asdfl;kjasdfl}
+ \KeywordTok{asdfl;kasdfl}
+ \KeywordTok{fjdkfjdkfdk}
+\KeywordTok{+}
+\KeywordTok{+and} \NormalTok{now for something completely different}
+
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{refs}{}
 
 \end{document}
